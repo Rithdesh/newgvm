@@ -23,7 +23,7 @@
 .loader::before {
   border-color: #4c42dceb #03000000;
   animation: inherit; 
-  animation-duration: .3s;
+  animation-duration: .2s;
   animation-direction: reverse;
 }
 .loader::after {
@@ -31,17 +31,4 @@
 }
 @keyframes l16 { 
   100%{transform: rotate(1turn)}
-}
-body::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Ensure the background image is behind the content */
-  background-image: url('https://tse3.mm.bing.net/th/id/OIG3.OUgvxmrPvYiuVEWkrNPh?pid=ImgGn');
-  background-size: cover;
-  background-repeat: no-repeat;
-  
 }

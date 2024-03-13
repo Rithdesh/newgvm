@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,9 +11,11 @@ type Password = {
     url: string;
     notes: string;
     user_id: number;
+
 };
 
 export default function PasswordEntry() {
+    const { uid } = useParams();
     const [password, setPassword] = useState<Password>({
         id: 0,
         title: '',
@@ -21,8 +23,15 @@ export default function PasswordEntry() {
         password: '',
         url: '',
         notes: '',
-        user_id: 0,
+        user_id: parseInt(uid?? '') 
     });
+
+    useEffect(() => {
+        setPassword(prevState => ({
+            ...prevState,
+            user_id: parseInt(uid?? '') 
+        }));
+    }, [uid]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -132,7 +141,7 @@ export default function PasswordEntry() {
                         required
                     />
                 </div>
-                <div className="mb-4">
+                {/* <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="user_id">
                         User ID
                     </label>
@@ -146,14 +155,14 @@ export default function PasswordEntry() {
                         onChange={handleChange}
                         required
                     />
-                </div>
+                </div> */}
                 <div className="flex items-center justify-between">
                     <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit"
                     >Save
                     </button>
-                    <Link to="/Vault">
+                    <Link to={`/pwd/get-all/${uid}`}>
                         <button
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="button"

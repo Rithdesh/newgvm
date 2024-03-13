@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import copyIcon from '../assets/copy-icon.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const lowercaseList = 'abcdefghijklmnopqrstuvwxyz';
 const uppercaseList = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -10,7 +10,8 @@ const numbersList = '0123456789';
 const symbolsList = "!@#$%^&*()?";
 
 function PasswordGenerator() {
-  const [password, setPassword] = useState<string>('');
+  const { uid } = useParams();
+  const [password, setPassword] = useState<string>('');   
   const [lowerCase, setLowerCase] = useState<boolean>(true);
   const [upperCase, setUpperCase] = useState<boolean>(true);
   const [numbers, setNumbers] = useState<boolean>(true);
@@ -31,7 +32,6 @@ function PasswordGenerator() {
         tempChoices.push(type);
       }
 
-      // Update state for individual checkboxes based on their type
       switch(type) {
         case 'lowercase':
           setLowerCase(!lowerCase);
@@ -100,7 +100,7 @@ function PasswordGenerator() {
   return (
     <div className='App bg-gray-200 w-full flex flex-col h-screen justify-center items-center'>
       <div className='container bg-white w-96 p-8 rounded-lg shadow-lg'>
-        <h2 className='title text-3xl font-bold mb-4 text-center text-gray-800'>Random Password Generator</h2>
+        <h2 className='title text-3xl font-bold mb-4 text-center text-gray-800'> Random Password Generator</h2>
         <div className="password-wrapper">
           <div className="password-area relative">
             <input type="text" value={password} disabled placeholder='Cannot generate password!' className='w-full px-3 py-4 border rounded-lg focus:outline-none focus:border-blue-500 text-lg font-semibold text-gray-800' />
@@ -144,7 +144,7 @@ function PasswordGenerator() {
           </div>
         </div>
         <div className="buttons flex justify-center mt-8">
-          <Link to="/Vault">
+        <Link to={`/pwd/get-all/${uid}`}>
             <button type='button' onClick={copyPassword} className='py-3 px-6 bg-blue-500 text-white rounded-md mr-4 cursor-pointer hover:bg-blue-600'>Vault</button>
           </Link>
           <button type='button' onClick={generatePassword} className='py-3 px-6 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600'>Generate Password</button>

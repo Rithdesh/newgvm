@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import copyIcon from '../assets/copy-icon.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,9 +15,19 @@ type Password = {
 };
 
 export default function ViewDetails() {
+  const { uid } = useParams();
+  const Navigate = useNavigate();
   const { title } = useParams();
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState<Password | null>(null);
+  const [pwd_id, setPwdId] = useState<number>(0);
+
+  const DeletePwd=(()=>{
+    fetch(`/api/pwd/delete/${pwd_id}`,{
+      method:'DELETE'
+    }).then(response => { response.json()})
+    Navigate(`/pwd/get-all/${uid}`);
+  })
 
   useEffect(() => {
     fetch(`/api/pwd/get-all/${title}`)
@@ -25,6 +35,7 @@ export default function ViewDetails() {
       .then((data) => {
         setPassword(data.results[0] || null);
         console.log(data.results[0]);
+        setPwdId(data.results[0].id)
         setLoading(false)
       })
      
@@ -79,7 +90,7 @@ export default function ViewDetails() {
             <div className="mb-4 relative"> 
               <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">Password</label>
               <div className="flex items-center">
-                <input type="text" id="password" name="password" value={password.password} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" readOnly />
+                <input type="password" id="password" name="password" value={password.password} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" readOnly />
                 <img src={copyIcon} alt="copyicon" className='copyIcon absolute top-10 right-3 cursor-pointer w-6 h-6' onClick={() => copyToClipboard(password.password, 'Password copied to clipboard!')} /> 
               </div>
             </div>
@@ -89,10 +100,12 @@ export default function ViewDetails() {
             </div>
           </div>
         )}
-        <div className="mt-6 text-center">
-          <Link to="/Vault">
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Back to Vault</button>
+        <div className="mt-6 text-center flex flex-row justify-between">
+          <Link to={`/pwd/get-all/${uid}`}>
+            <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Vault</button>
           </Link>
+          <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onClick={DeletePwd}> Delete</button>
+          <Link to={`/pwd/update/${password?.id}/${uid}`}><button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Edit</button></Link >
         </div>
       </div>
       <ToastContainer
