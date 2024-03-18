@@ -55,7 +55,7 @@ export default function UserEntry() {
 
   return (
   <div className="flex h-screen bg-gray-200 items-center justify-center">
-    <div
+    {/* <div
       id="icons container"
       className="flex flex-col max-w-4/5 gap-10 rounded-md bg-white p-12 shadow-lg">
       <h1 className="text-black font-bold text-center text-3xl">Create An Account</h1>
@@ -119,7 +119,7 @@ export default function UserEntry() {
       draggable
       theme="colored"
       style={{ top: '40px', right:'40px' }} 
-    />
+    /> */}
   </div>
 
   );
