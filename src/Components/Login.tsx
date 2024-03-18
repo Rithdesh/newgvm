@@ -10,13 +10,13 @@ export default function Login() {
 
     const onSubmitData = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Check if username and password are empty
+    
         if (!username.trim() || !password.trim()) {
-            toast.error('Please fill in both username and password fields.');
+            toast.error('Fill in both the fields.');
             return;
         }
         try {
-            const response = await fetch('/api/user-auth', {
+            const response = await fetch('https://pwdapi.rajvikash-r2022cse.workers.dev/user-auth', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export default function Login() {
             }
         } catch (error) {
             console.error("Error fetching data:", error);
-            toast.error('Wrong Credentials');
+            toast.error("Wrong Credentials!");
         }
     }
 

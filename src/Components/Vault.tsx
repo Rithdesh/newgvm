@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-// import PasswordList from './PasswordList';
+import { useState } from 'react';
 import PasswordList from './PasswordList';
 import { Link, useParams} from 'react-router-dom';
 
@@ -10,7 +9,7 @@ function Vault() {
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-gray-200">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 max-h-[100vh]">
-        <h1 className="text-center text-3xl font-bold mb-4">🔐 SECURE VAULT 🔐</h1>
+        <h1 className="text-center text-3xl font-bold mb-4">SECURE VAULT</h1>
         <div className="flex flex-row gap-2 mb-4">
           <input
             type="search"
@@ -23,7 +22,7 @@ function Vault() {
           <button
             type="button"
             id="search-button"
-            className="bg-blue-500 py-2 px-4 text-white rounded-md hover:bg-blue-700"
+            className="bg-blue-500 py-2 px-4 text-white rounded-md hover:animate-pulse hover:bg-blue-700"
             onClick={() => {
               console.log('Search:', search);
             }}

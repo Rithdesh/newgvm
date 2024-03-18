@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import copyIcon from '../assets/copy-icon.svg';
 import { ToastContainer, toast } from 'react-toastify';
@@ -23,14 +23,14 @@ export default function ViewDetails() {
   const [pwd_id, setPwdId] = useState<number>(0);
 
   const DeletePwd=(()=>{
-    fetch(`/api/pwd/delete/${pwd_id}`,{
+    fetch(`https://pwdapi.rajvikash-r2022cse.workers.dev/pwd/delete/${pwd_id}`,{
       method:'DELETE'
     }).then(response => { response.json()})
     Navigate(`/pwd/get-all/${uid}`);
   })
 
   useEffect(() => {
-    fetch(`/api/pwd/get-all/${title}`)
+    fetch(`https://pwdapi.rajvikash-r2022cse.workers.dev/pwd/get-all/${title}`)
       .then((response) => response.json())
       .then((data) => {
         setPassword(data.results[0] || null);

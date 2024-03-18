@@ -1,8 +1,5 @@
-// import React, { useEffect, useState } from 'react';
-// import { Link, useParams } from 'react-router-dom';
-import React,{useEffect,useState} from 'react';
-import { Link,useParams } from 'react-router-dom';
-
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 type Password = {
   id: number;
@@ -24,7 +21,7 @@ export default function PasswordList({ search }: Props) {
   const [passwords, setPasswords] = useState<Password[]>([]);
 
   useEffect(() => {
-    fetch('/api/pwd/get-id/'+uid)
+    fetch('https://pwdapi.rajvikash-r2022cse.workers.dev/pwd/get-id/'+uid)
       .then(response => response.json())
       .then(data => {
         setPasswords(data.result.results);
@@ -63,6 +60,3 @@ export default function PasswordList({ search }: Props) {
     </div>
   );
 }
-
-
-

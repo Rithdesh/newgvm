@@ -16,7 +16,7 @@ export default function Update() {
   const [password, setPassword] = useState<Password>();
 
   useEffect(() => {
-    fetch(`/api/pwd/get-all/${id}`)
+    fetch(`https://pwdapi.rajvikash-r2022cse.workers.devi/pwd/get-all/${id}`)
       .then(response => response.json())
       .then(data => setPassword(data.results[0]))
       .catch(error => console.error('Error fetching data:', error));
@@ -24,7 +24,7 @@ export default function Update() {
 
   const onUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetch(`/api/pwd/update/${id}`, {
+    fetch(`https://pwdapi.rajvikash-r2022cse.workers.dev/pwd/update/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
