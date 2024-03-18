@@ -1,60 +1,60 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+// import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type Users = {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  created_at: string;
-};
+// type Users = {
+//   id: number;
+//   username: string;
+//   email: string;
+//   password: string;
+//   created_at: string;
+// };
 
 export default function UserEntry() {
-  const [user, setUser] = useState<Users>({
-    id: 0,
-    username: '',
-    email: '',
-    password: '',
-    created_at: '',
-  });
+  // const [user, setUser] = useState<Users>({
+  //   id: 0,
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  //   created_at: '',
+  // });
 
-  const onSubmitPwd = (e: React.FormEvent<HTMLFormElement>) => { 
-    e.preventDefault();
-    console.log(JSON.stringify(user));
-    try {
-      fetch('https://pwdapi.rajvikash-r2022cse.workers.dev/users/new', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const contentType = response.headers.get('content-type');
-          if (contentType && contentType.indexOf('application/json') !== -1) {
-            return response.json();
-          } else {
-            throw new Error("Oops, we haven't got JSON!");
-          }
-        })
-        .then(data => {
-          console.log('Data added:', data);
-          toast.success('New account created!');
-        })
-        .catch(error => console.log('Error:', error))
-        .finally(() => console.log('Data added (finally)'));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const onSubmitPwd = (e: React.FormEvent<HTMLFormElement>) => { 
+  //   e.preventDefault();
+  //   console.log(JSON.stringify(user));
+  //   try {
+  //     fetch('https://pwdapi.rajvikash-r2022cse.workers.dev/users/new', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(user),
+  //     })
+  //       .then(response => {
+  //         if (!response.ok) {
+  //           throw new Error(`HTTP error! status: ${response.status}`);
+  //         }
+  //         const contentType = response.headers.get('content-type');
+  //         if (contentType && contentType.indexOf('application/json') !== -1) {
+  //           return response.json();
+  //         } else {
+  //           throw new Error("Oops, we haven't got JSON!");
+  //         }
+  //       })
+  //       .then(data => {
+  //         console.log('Data added:', data);
+  //         toast.success('New account created!');
+  //       })
+  //       .catch(error => console.log('Error:', error))
+  //       .finally(() => console.log('Data added (finally)'));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
-  <div className="flex h-screen bg-gray-200 items-center justify-center">
+  <div className="flex h-screen bg-gray-200 items-center justify-center">/edrftgyhuijko
     {/* <div
       id="icons container"
       className="flex flex-col max-w-4/5 gap-10 rounded-md bg-white p-12 shadow-lg">
