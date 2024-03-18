@@ -43,7 +43,7 @@ export default function PasswordEntry() {
     const onSubmitPwd = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://pwdapi.rajvikash-r2022cse.workers.dev/pwd/new/'+uid, {
+            const response = await fetch('https://pwdapi.rajvikash-r2022cse.workers.dev/pwd/new'+uid, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
